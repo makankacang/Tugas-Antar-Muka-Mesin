@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    /* ── Magnifier ring dekoratif ── */
     .cursor-lens {
       position: fixed;
       width: 70px;
@@ -17,30 +18,20 @@
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
-      box-shadow: 0 10px 30px rgba(217, 72, 15, 0.28), inset 0 0 18px rgba(255, 255, 255, 0.55);
+      box-shadow: 0 10px 30px rgba(217, 72, 15, 0.28);
       display: none;
-      overflow: hidden;
-      background: #fffaf2;
     }
 
-    .cursor-lens-content {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      min-height: 100vh;
-      transform-origin: 0 0;
-    }
-
+    /* glare di dalam cincin */
     .cursor-lens::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.45), transparent 34%);
-      z-index: 2;
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.30), transparent 50%);
     }
 
+    /* handle kaca pembesar */
     .cursor-lens::after {
       content: "";
       position: absolute;
@@ -52,29 +43,16 @@
       bottom: 4px;
       transform: rotate(45deg);
       transform-origin: left center;
-      z-index: 3;
     }
 
     @media (hover: hover) and (pointer: fine) {
-      body {
-        cursor: none;
-      }
-
-      a, button, .btn, .menu-card {
-        cursor: none;
-      }
-
-      .cursor-lens {
-        display: block;
-      }
+      body { cursor: none; }
+      a, button, .btn, .menu-card { cursor: none; }
+      .cursor-lens { display: block; }
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+    /* ── Reset & base ── */
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
     body {
       font-family: "Poppins", sans-serif;
@@ -83,21 +61,12 @@
       line-height: 1.7;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    .container { width: min(1120px, 92%); margin: auto; }
 
-    .container {
-      width: min(1120px, 92%);
-      margin: auto;
-    }
-
+    /* ── Header ── */
     header {
       position: sticky;
       top: 0;
@@ -145,9 +114,7 @@
       color: #5a3326;
     }
 
-    nav a:hover {
-      color: #d9480f;
-    }
+    nav a:hover { color: #d9480f; }
 
     .btn {
       display: inline-flex;
@@ -168,10 +135,7 @@
       box-shadow: 0 14px 28px rgba(217, 72, 15, 0.26);
     }
 
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      background: #b8320a;
-    }
+    .btn-primary:hover { transform: translateY(-3px); background: #b8320a; }
 
     .btn-secondary {
       background: white;
@@ -179,11 +143,9 @@
       border: 1px solid rgba(139, 45, 16, 0.18);
     }
 
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      border-color: #d9480f;
-    }
+    .btn-secondary:hover { transform: translateY(-3px); border-color: #d9480f; }
 
+    /* ── Hero ── */
     .hero {
       position: relative;
       overflow: hidden;
@@ -222,9 +184,7 @@
       margin-bottom: 20px;
     }
 
-    h1 span {
-      color: #d9480f;
-    }
+    h1 span { color: #d9480f; }
 
     .hero p {
       color: #604137;
@@ -255,20 +215,10 @@
       box-shadow: 0 16px 42px rgba(58, 31, 22, 0.07);
     }
 
-    .stat-card strong {
-      display: block;
-      font-size: 1.4rem;
-      color: #8b2d10;
-    }
+    .stat-card strong { display: block; font-size: 1.4rem; color: #8b2d10; }
+    .stat-card small { color: #6e4a3d; font-weight: 500; }
 
-    .stat-card small {
-      color: #6e4a3d;
-      font-weight: 500;
-    }
-
-    .hero-visual {
-      position: relative;
-    }
+    .hero-visual { position: relative; }
 
     .food-card {
       background: white;
@@ -300,10 +250,7 @@
       width: 100%;
     }
 
-    .food-label h3 {
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-    }
+    .food-label h3 { font-size: 1.1rem; margin-bottom: 4px; }
 
     .floating-note {
       position: absolute;
@@ -318,9 +265,8 @@
       transform: rotate(4deg);
     }
 
-    section {
-      padding: 84px 0;
-    }
+    /* ── Sections ── */
+    section { padding: 84px 0; }
 
     .section-title {
       text-align: center;
@@ -343,10 +289,9 @@
       margin: 10px 0 12px;
     }
 
-    .section-title p {
-      color: #6e4a3d;
-    }
+    .section-title p { color: #6e4a3d; }
 
+    /* ── About ── */
     .about-grid {
       display: grid;
       grid-template-columns: 0.95fr 1.05fr;
@@ -371,16 +316,9 @@
       margin-bottom: 18px;
     }
 
-    .about-content p {
-      color: #604137;
-      margin-bottom: 18px;
-    }
+    .about-content p { color: #604137; margin-bottom: 18px; }
 
-    .feature-list {
-      display: grid;
-      gap: 14px;
-      margin-top: 24px;
-    }
+    .feature-list { display: grid; gap: 14px; margin-top: 24px; }
 
     .feature-item {
       display: flex;
@@ -405,6 +343,7 @@
       font-weight: 800;
     }
 
+    /* ── Menu ── */
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -420,30 +359,13 @@
       transition: 0.25s ease;
     }
 
-    .menu-card:hover {
-      transform: translateY(-8px);
-    }
+    .menu-card:hover { transform: translateY(-8px); }
 
-    .menu-img {
-      height: 220px;
-      background-size: cover;
-      background-position: center;
-    }
+    .menu-img { height: 220px; background-size: cover; background-position: center; }
 
-    .menu-content {
-      padding: 22px;
-    }
-
-    .menu-content h3 {
-      font-size: 1.18rem;
-      margin-bottom: 8px;
-    }
-
-    .menu-content p {
-      color: #6e4a3d;
-      font-size: 0.94rem;
-      margin-bottom: 16px;
-    }
+    .menu-content { padding: 22px; }
+    .menu-content h3 { font-size: 1.18rem; margin-bottom: 8px; }
+    .menu-content p { color: #6e4a3d; font-size: 0.94rem; margin-bottom: 16px; }
 
     .price {
       display: flex;
@@ -452,10 +374,7 @@
       gap: 16px;
     }
 
-    .price strong {
-      color: #d9480f;
-      font-size: 1.15rem;
-    }
+    .price strong { color: #d9480f; font-size: 1.15rem; }
 
     .tag {
       background: #fff1dc;
@@ -466,19 +385,11 @@
       font-weight: 700;
     }
 
-    .quality {
-      background: #24140f;
-      color: white;
-    }
-
+    /* ── Quality ── */
+    .quality { background: #24140f; color: white; }
     .quality .section-title p,
-    .quality .section-title h2 {
-      color: white;
-    }
-
-    .quality .section-title span {
-      color: #ffb703;
-    }
+    .quality .section-title h2 { color: white; }
+    .quality .section-title span { color: #ffb703; }
 
     .quality-grid {
       display: grid;
@@ -505,16 +416,10 @@
       margin-bottom: 18px;
     }
 
-    .quality-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.18rem;
-    }
+    .quality-card h3 { margin-bottom: 10px; font-size: 1.18rem; }
+    .quality-card p { color: #f3dfcc; font-size: 0.94rem; }
 
-    .quality-card p {
-      color: #f3dfcc;
-      font-size: 0.94rem;
-    }
-
+    /* ── Order ── */
     .order {
       background:
         linear-gradient(rgba(255, 250, 242, 0.88), rgba(255, 250, 242, 0.88)),
@@ -541,15 +446,9 @@
       margin-bottom: 14px;
     }
 
-    .order-box p {
-      color: #604137;
-      margin-bottom: 24px;
-    }
+    .order-box p { color: #604137; margin-bottom: 24px; }
 
-    .info-panel {
-      display: grid;
-      gap: 12px;
-    }
+    .info-panel { display: grid; gap: 12px; }
 
     .info-row {
       background: #fffaf2;
@@ -558,17 +457,10 @@
       padding: 15px 17px;
     }
 
-    .info-row strong {
-      color: #8b2d10;
-      display: block;
-      margin-bottom: 2px;
-    }
+    .info-row strong { color: #8b2d10; display: block; margin-bottom: 2px; }
 
-    footer {
-      background: #140b08;
-      color: white;
-      padding: 38px 0;
-    }
+    /* ── Footer ── */
+    footer { background: #140b08; color: white; padding: 38px 0; }
 
     .footer-content {
       display: flex;
@@ -578,63 +470,24 @@
       flex-wrap: wrap;
     }
 
-    .footer-content p {
-      color: #d8c2b4;
-      font-size: 0.94rem;
-    }
+    .footer-content p { color: #d8c2b4; font-size: 0.94rem; }
 
+    /* ── Responsive ── */
     @media (max-width: 900px) {
-      nav {
-        display: none;
-      }
-
-      .hero-grid,
-      .about-grid,
-      .order-box {
-        grid-template-columns: 1fr;
-      }
-
-      .menu-grid,
-      .quality-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .floating-note {
-        right: 14px;
-      }
+      nav { display: none; }
+      .hero-grid, .about-grid, .order-box { grid-template-columns: 1fr; }
+      .menu-grid, .quality-grid { grid-template-columns: 1fr 1fr; }
+      .floating-note { right: 14px; }
     }
 
     @media (max-width: 640px) {
-      .navbar {
-        height: 68px;
-      }
-
-      .hero {
-        padding-top: 58px;
-      }
-
-      .hero-stats,
-      .menu-grid,
-      .quality-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .food-image,
-      .about-image {
-        min-height: 320px;
-      }
-
-      .order-box {
-        padding: 26px;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
+      .navbar { height: 68px; }
+      .hero { padding-top: 58px; }
+      .hero-stats, .menu-grid, .quality-grid { grid-template-columns: 1fr; }
+      .food-image, .about-image { min-height: 320px; }
+      .order-box { padding: 26px; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
     }
   </style>
 </head>
@@ -877,39 +730,78 @@
       <p>© 2026 Warung Nusa Rasa. Landing page untuk tugas WebQual 4.0.</p>
     </div>
   </footer>
-  <div class="cursor-lens" id="cursorLens">
-    <div class="cursor-lens-content" id="cursorLensContent"></div>
-  </div>
+
+  <!-- Ring dekoratif kaca pembesar -->
+  <div class="cursor-lens" id="cursorLens"></div>
 
   <script>
-    const cursorLens = document.getElementById("cursorLens");
-    const cursorLensContent = document.getElementById("cursorLensContent");
-    const zoom = 1.8;
+    const lens   = document.getElementById('cursorLens');
+    const RADIUS = 35;   // setengah diameter lens (px)
+    const ZOOM   = 2;    // faktor zoom
 
-    function buildMagnifier() {
-      const clone = document.body.cloneNode(true);
-      clone.querySelector("#cursorLens")?.remove();
-      clone.style.pointerEvents = "none";
-      clone.style.margin = "0";
-      cursorLensContent.innerHTML = "";
-      cursorLensContent.appendChild(clone);
+    /* ── Buat overlay mirror ─────────────────────────────────────────── */
+    const mirror = document.createElement('div');
+    Object.assign(mirror.style, {
+      position      : 'fixed',
+      top           : '0',
+      left          : '0',
+      width         : '100%',
+      height        : '100%',
+      pointerEvents : 'none',
+      zIndex        : '9998',
+      clipPath      : `circle(0px at -200px -200px)`,
+      overflow      : 'hidden',
+      background    : '#fffaf2',   /* tutup konten asli di balik lens */
+    });
+    document.body.appendChild(mirror);
+
+    /* inner: menyalin semua anak body kecuali lens & mirror sendiri */
+    const mirrorInner = document.createElement('div');
+    Object.assign(mirrorInner.style, {
+      position      : 'absolute',
+      top           : '0',
+      left          : '0',
+      width         : '100%',
+      transformOrigin : '0 0',
+      pointerEvents : 'none',
+    });
+    mirror.appendChild(mirrorInner);
+
+    function buildMirror() {
+      mirrorInner.innerHTML = '';
+      Array.from(document.body.children).forEach(child => {
+        if (child === mirror || child === lens) return;
+        mirrorInner.appendChild(child.cloneNode(true));
+      });
     }
 
-    function updateLens(event) {
-      const x = event.clientX;
-      const y = event.clientY;
-      const pageX = window.scrollX + x;
-      const pageY = window.scrollY + y;
-      const lensSize = cursorLens.offsetWidth;
+    /* ── Update posisi setiap mousemove ─────────────────────────────── */
+    function onMouseMove(e) {
+      const x = e.clientX;
+      const y = e.clientY;
 
-      cursorLens.style.left = `${x}px`;
-      cursorLens.style.top = `${y}px`;
-      cursorLensContent.style.transform = `translate(${lensSize / 2 - pageX * zoom}px, ${lensSize / 2 - pageY * zoom}px) scale(${zoom})`;
+      /* geser ring */
+      lens.style.left = x + 'px';
+      lens.style.top  = y + 'px';
+
+      /* clip mirror jadi lingkaran di bawah ring */
+      mirror.style.clipPath = `circle(${RADIUS}px at ${x}px ${y}px)`;
+
+      /* zoom: titik (x,y) di layar harus jatuh di (x,y) di dalam mirror
+         → translate = (x - x*ZOOM) , (y - y*ZOOM)  plus offset scroll */
+      const tx = x - (x + window.scrollX) * ZOOM;
+      const ty = y - (y + window.scrollY) * ZOOM;
+      mirrorInner.style.transform = `translate(${tx}px, ${ty}px) scale(${ZOOM})`;
     }
 
-    window.addEventListener("load", buildMagnifier);
-    window.addEventListener("resize", buildMagnifier);
-    window.addEventListener("mousemove", updateLens);
+    window.addEventListener('load',      buildMirror);
+    window.addEventListener('resize',    buildMirror);
+    window.addEventListener('mousemove', onMouseMove);
+
+    /* rebuild mirror kalau ada scroll supaya konten yang muncul ikut */
+    window.addEventListener('scroll', () => {
+      /* cukup update transform, clone sudah di-render semua */
+    });
   </script>
 </body>
 </html>
