@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warung Nusa Rasa | Ayam Taliwang & Masakan Nusantara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .cursor-lens {
+      position: fixed;
+      width: 70px;
+      height: 70px;
+      border: 3px solid rgba(217, 72, 15, 0.9);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      background-repeat: no-repeat;
+      background-size: 220vw auto;
+      box-shadow: 0 10px 30px rgba(217, 72, 15, 0.28), inset 0 0 18px rgba(255, 255, 255, 0.55);
+      display: none;
+      overflow: hidden;
+    }
+
+    .cursor-lens::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.45), transparent 34%);
+    }
+
+    .cursor-lens::after {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 5px;
+      background: rgba(217, 72, 15, 0.9);
+      border-radius: 99px;
+      right: -15px;
+      bottom: 4px;
+      transform: rotate(45deg);
+      transform-origin: left center;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      body {
+        cursor: none;
+      }
+
+      a, button, .btn, .menu-card {
+        cursor: none;
+      }
+
+      .cursor-lens {
+        display: block;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #fffaf2;
+      color: #24140f;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 250, 242, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(139, 45, 16, 0.12);
+    }
+
+    .navbar {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #8b2d10;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #d9480f, #ffb703);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 1.3rem;
+      box-shadow: 0 10px 24px rgba(217, 72, 15, 0.28);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #5a3326;
+    }
+
+    nav a:hover {
+      color: #d9480f;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      border-radius: 999px;
+      padding: 13px 24px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: #d9480f;
+      color: white;
+      box-shadow: 0 14px 28px rgba(217, 72, 15, 0.26);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: #b8320a;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #8b2d10;
+      border: 1px solid rgba(139, 45, 16, 0.18);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      border-color: #d9480f;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 86px 0 70px;
+      background:
+        radial-gradient(circle at 90% 10%, rgba(255, 183, 3, 0.24), transparent 28%),
+        radial-gradient(circle at 0% 20%, rgba(217, 72, 15, 0.16), transparent 26%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      align-items: center;
+      gap: 52px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff1dc;
+      color: #8b2d10;
+      border: 1px solid rgba(217, 72, 15, 0.18);
+      border-radius: 999px;
+      padding: 8px 15px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.7rem);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      color: #24140f;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: #d9480f;
+    }
+
+    .hero p {
+      color: #604137;
+      font-size: 1.05rem;
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 640px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(139, 45, 16, 0.12);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 16px 42px rgba(58, 31, 22, 0.07);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.4rem;
+      color: #8b2d10;
+    }
+
+    .stat-card small {
+      color: #6e4a3d;
+      font-weight: 500;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .food-card {
+      background: white;
+      border-radius: 34px;
+      padding: 22px;
+      box-shadow: 0 28px 70px rgba(58, 31, 22, 0.16);
+      border: 1px solid rgba(139, 45, 16, 0.08);
+    }
+
+    .food-image {
+      min-height: 380px;
+      border-radius: 26px;
+      background:
+        linear-gradient(rgba(36, 20, 15, 0.12), rgba(36, 20, 15, 0.4)),
+        url("https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: end;
+      padding: 24px;
+      color: white;
+    }
+
+    .food-label {
+      background: rgba(36, 20, 15, 0.72);
+      backdrop-filter: blur(8px);
+      padding: 16px 18px;
+      border-radius: 20px;
+      width: 100%;
+    }
+
+    .food-label h3 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .floating-note {
+      position: absolute;
+      right: -16px;
+      top: 32px;
+      background: #ffb703;
+      color: #4a220c;
+      padding: 16px 18px;
+      border-radius: 22px;
+      font-weight: 800;
+      box-shadow: 0 20px 40px rgba(255, 183, 3, 0.28);
+      transform: rotate(4deg);
+    }
+
+    section {
+      padding: 84px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 46px;
+    }
+
+    .section-title span {
+      color: #d9480f;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.88rem;
+      letter-spacing: 1.4px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin: 10px 0 12px;
+    }
+
+    .section-title p {
+      color: #6e4a3d;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 38px;
+      align-items: center;
+    }
+
+    .about-image {
+      border-radius: 30px;
+      min-height: 440px;
+      background:
+        linear-gradient(rgba(36, 20, 15, 0.08), rgba(36, 20, 15, 0.36)),
+        url("https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=80");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 24px 60px rgba(58, 31, 22, 0.12);
+    }
+
+    .about-content h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .about-content p {
+      color: #604137;
+      margin-bottom: 18px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      background: white;
+      border: 1px solid rgba(139, 45, 16, 0.1);
+      border-radius: 20px;
+      padding: 16px;
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #d9480f;
+      color: white;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .menu-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(139, 45, 16, 0.09);
+      box-shadow: 0 18px 46px rgba(58, 31, 22, 0.08);
+      transition: 0.25s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .menu-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .menu-content {
+      padding: 22px;
+    }
+
+    .menu-content h3 {
+      font-size: 1.18rem;
+      margin-bottom: 8px;
+    }
+
+    .menu-content p {
+      color: #6e4a3d;
+      font-size: 0.94rem;
+      margin-bottom: 16px;
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .price strong {
+      color: #d9480f;
+      font-size: 1.15rem;
+    }
+
+    .tag {
+      background: #fff1dc;
+      color: #8b2d10;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .quality {
+      background: #24140f;
+      color: white;
+    }
+
+    .quality .section-title p,
+    .quality .section-title h2 {
+      color: white;
+    }
+
+    .quality .section-title span {
+      color: #ffb703;
+    }
+
+    .quality-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .quality-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 26px;
+      padding: 28px;
+    }
+
+    .quality-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: #ffb703;
+      color: #4a220c;
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+    }
+
+    .quality-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.18rem;
+    }
+
+    .quality-card p {
+      color: #f3dfcc;
+      font-size: 0.94rem;
+    }
+
+    .order {
+      background:
+        linear-gradient(rgba(255, 250, 242, 0.88), rgba(255, 250, 242, 0.88)),
+        url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .order-box {
+      background: white;
+      border-radius: 34px;
+      padding: 42px;
+      display: grid;
+      grid-template-columns: 1fr 0.85fr;
+      gap: 34px;
+      align-items: center;
+      box-shadow: 0 24px 70px rgba(58, 31, 22, 0.12);
+      border: 1px solid rgba(139, 45, 16, 0.1);
+    }
+
+    .order-box h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .order-box p {
+      color: #604137;
+      margin-bottom: 24px;
+    }
+
+    .info-panel {
+      display: grid;
+      gap: 12px;
+    }
+
+    .info-row {
+      background: #fffaf2;
+      border: 1px solid rgba(139, 45, 16, 0.1);
+      border-radius: 18px;
+      padding: 15px 17px;
+    }
+
+    .info-row strong {
+      color: #8b2d10;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    footer {
+      background: #140b08;
+      color: white;
+      padding: 38px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-content p {
+      color: #d8c2b4;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .order-box {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-grid,
+      .quality-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .floating-note {
+        right: 14px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .navbar {
+        height: 68px;
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .hero-stats,
+      .menu-grid,
+      .quality-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .food-image,
+      .about-image {
+        min-height: 320px;
+      }
+
+      .order-box {
+        padding: 26px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="logo">
+        <div class="logo-icon">🍗</div>
+        <span>Warung Nusa Rasa</span>
+      </a>
+      <nav>
+        <a href="#tentang">Tentang</a>
+        <a href="#menu">Menu</a>
+        <a href="#kualitas">Kualitas</a>
+        <a href="#pesan">Pesan</a>
+      </nav>
+      <a href="#pesan" class="btn btn-primary">Pesan Sekarang</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">🔥 Spesialis Ayam Taliwang & Cita Rasa Nusantara</div>
+          <h1>Pedas gurih <span>Ayam Taliwang</span> yang bikin makan makin lahap.</h1>
+          <p>Warung Nusa Rasa menyajikan ayam taliwang, ayam bakar madu, ayam kremes, kangkung belacan, telur barendo, nasi hangat, dan aneka minuman dengan bumbu berani, bahan segar, serta harga yang tetap ramah untuk pelajar dan keluarga.</p>
+          <div class="hero-actions">
+            <a href="#menu" class="btn btn-primary">Lihat Menu</a>
+            <a href="#tentang" class="btn btn-secondary">Kenalan Dulu</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <strong>20K</strong>
+              <small>Porsi tersaji</small>
+            </div>
+            <div class="stat-card">
+              <strong>4.7/5</strong>
+              <small>Rating pelanggan</small>
+            </div>
+            <div class="stat-card">
+              <strong>15-20</strong>
+              <small>Menit penyajian</small>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="floating-note">Mulai 5 ribuan</div>
+          <div class="food-card">
+            <div class="food-image">
+              <div class="food-label">
+                <h3>Ayam Taliwang Bakar Pedas</h3>
+                <p>Dibakar dengan bumbu khas, disajikan bersama nasi dan sambal segar.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tentang">
+      <div class="container about-grid">
+        <div class="about-image"></div>
+        <div class="about-content">
+          <h2>Warung sederhana dengan rasa yang serius.</h2>
+          <p>Warung Nusa Rasa hadir sebagai tempat makan bernuansa tradisional minimalis di Bandung, tepatnya di kawasan Gelap Nyawang sebelah MBA ITB. Warung ini mengangkat cita rasa khas Indonesia, terutama ayam taliwang dengan rasa pedas gurih yang kuat.</p>
+          <p>Kami mengutamakan menu yang mudah dipilih, harga yang jelas, dan rasa yang cocok untuk makan harian, mulai dari ayam bakar, ayam goreng, menu pedas, lauk tambahan, sampai minuman segar.</p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <div class="check">✓</div>
+              <div>
+                <strong>Bumbu diracik setiap hari</strong>
+                <p>Menggunakan cabai, bawang, rempah, dan bahan segar untuk menjaga kualitas rasa.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="check">✓</div>
+              <div>
+                <strong>Pilihan tingkat pedas</strong>
+                <p>Pelanggan dapat memilih level pedas ringan, sedang, atau pedas khas Taliwang.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="check">✓</div>
+              <div>
+                <strong>Cocok untuk makan harian</strong>
+                <p>Harga dibuat terjangkau tanpa mengurangi porsi dan kualitas bahan.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="container">
+        <div class="section-title">
+          <span>Menu Favorit</span>
+          <h2>Pilihan menu yang paling sering dipesan.</h2>
+          <p>Setiap menu ditulis dengan informasi yang jelas agar pelanggan mudah memahami isi paket, rasa, dan kisaran harga sebelum memesan.</p>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-card">
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-content">
+              <h3>Ayam Taliwang</h3>
+              <p>Ayam berbumbu pedas gurih khas taliwang, bisa dipilih bakar atau goreng sesuai selera.</p>
+              <div class="price">
+                <strong>Rp20.000</strong>
+                <span class="tag">Best Seller</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-content">
+              <h3>Ayam Bakar Madu</h3>
+              <p>Ayam bakar dengan rasa manis gurih dari madu dan bumbu rempah, cocok untuk yang tidak terlalu pedas.</p>
+              <div class="price">
+                <strong>Rp20.000</strong>
+                <span class="tag">Hemat</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-content">
+              <h3>Ayam Kremes</h3>
+              <p>Ayam goreng gurih dengan taburan kremes renyah, disajikan dengan sambal dan lalapan.</p>
+              <div class="price">
+                <strong>Rp20.000</strong>
+                <span class="tag">Pelengkap</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-content">
+              <h3>Kangkung Belacan</h3>
+              <p>Kangkung segar dengan bumbu belacan yang gurih dan sedikit pedas sebagai pelengkap makan.</p>
+              <div class="price">
+                <strong>Rp7.000</strong>
+                <span class="tag">Favorit</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-content">
+              <h3>Telur Barendo</h3>
+              <p>Telur dadar khas Minang dengan pinggiran renyah, cocok untuk tambahan lauk hemat.</p>
+              <div class="price">
+                <strong>Rp5.000</strong>
+                <span class="tag">Rumahan</span>
+              </div>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-content">
+              <h3>Aneka Minuman</h3>
+              <p>Es teh, jeruk, kopi, dan minuman segar lainnya untuk menemani menu ayam dan sambal.</p>
+              <div class="price">
+                <strong>Rp5.000</strong>
+                <span class="tag">Segar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quality" id="kualitas">
+      <div class="container">
+        <div class="section-title">
+          <span>Mengapa Memilih Kami</span>
+          <h2>Informasi jelas, tampilan mudah, dan pemesanan praktis.</h2>
+          <p>Bagian ini dibuat untuk menunjukkan kualitas layanan Warung Nusa Rasa dari sisi pengalaman pengguna, informasi menu, dan kemudahan berkomunikasi.</p>
+        </div>
+        <div class="quality-grid">
+          <div class="quality-card">
+            <div class="quality-icon">🖥️</div>
+            <h3>Mudah Digunakan</h3>
+            <p>Navigasi dibuat sederhana, tombol pemesanan mudah ditemukan, dan tampilan disusun responsif agar nyaman dibuka dari laptop maupun handphone.</p>
+          </div>
+          <div class="quality-card">
+            <div class="quality-icon">📋</div>
+            <h3>Informasi Lengkap</h3>
+            <p>Informasi menu, harga, deskripsi makanan, jam operasional, dan lokasi disajikan secara jelas sehingga pelanggan dapat memilih menu lebih cepat.</p>
+          </div>
+          <div class="quality-card">
+            <div class="quality-icon">💬</div>
+            <h3>Komunikasi Praktis</h3>
+            <p>Website menyediakan ajakan pemesanan, kontak WhatsApp, dan informasi layanan agar pelanggan lebih mudah menghubungi warung.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="order" id="pesan">
+      <div class="container">
+        <div class="order-box">
+          <div>
+            <h2>Siap makan ayam taliwang hari ini?</h2>
+            <p>Pesan langsung melalui WhatsApp untuk tanya stok menu, level pedas, pesanan bungkus, atau pemesanan dalam jumlah banyak.</p>
+            <div class="hero-actions">
+              <a href="https://wa.me/6281234567890?text=Halo%20Warung%20Nusa%20Rasa%2C%20saya%20mau%20pesan%20menu" class="btn btn-primary" target="_blank">Chat WhatsApp</a>
+              <a href="https://maps.google.com" class="btn btn-secondary" target="_blank">Lihat Lokasi</a>
+            </div>
+          </div>
+          <div class="info-panel">
+            <div class="info-row">
+              <strong>Alamat</strong>
+              <span>Kawasan Gelap Nyawang, sebelah MBA ITB, Bandung</span>
+            </div>
+            <div class="info-row">
+              <strong>Jam Buka</strong>
+              <span>Senin - Sabtu, 10.00 - 21.00 WIB</span>
+            </div>
+            <div class="info-row">
+              <strong>Kontak</strong>
+              <span>0812-0000-0000</span>
+            </div>
+            <div class="info-row">
+              <strong>Layanan</strong>
+              <span>Makan di tempat, bungkus, dan pesan via WhatsApp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <div class="logo">
+        <div class="logo-icon">🍗</div>
+        <span>Warung Nusa Rasa</span>
+      </div>
+      <p>© 2026 Warung Nusa Rasa. Landing page untuk tugas WebQual 4.0.</p>
+    </div>
+  </footer>
+  <div class="cursor-lens" id="cursorLens"></div>
+
+  <script>
+    const cursorLens = document.getElementById("cursorLens");
+    const zoom = 2;
+
+    function updateLens(event) {
+      const x = event.clientX;
+      const y = event.clientY;
+      const pageX = window.scrollX + x;
+      const pageY = window.scrollY + y;
+      const lensSize = cursorLens.offsetWidth;
+
+      cursorLens.style.left = `${x}px`;
+      cursorLens.style.top = `${y}px`;
+      cursorLens.style.backgroundImage = `linear-gradient(rgba(255, 250, 242, 0.08), rgba(255, 250, 242, 0.08)), url("${location.href}")`;
+      cursorLens.style.backgroundSize = `${document.documentElement.scrollWidth * zoom}px ${document.documentElement.scrollHeight * zoom}px`;
+      cursorLens.style.backgroundPosition = `-${pageX * zoom - lensSize / 2}px -${pageY * zoom - lensSize / 2}px`;
+    }
+
+    window.addEventListener("mousemove", updateLens);
+    window.addEventListener("scroll", () => {
+      cursorLens.style.backgroundImage = `linear-gradient(rgba(255, 250, 242, 0.08), rgba(255, 250, 242, 0.08)), url("${location.href}")`;
+    });
+  </script>
+</body>
+</html>
