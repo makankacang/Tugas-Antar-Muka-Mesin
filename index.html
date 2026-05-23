@@ -17,11 +17,19 @@
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
-      background-repeat: no-repeat;
-      background-size: 220vw auto;
       box-shadow: 0 10px 30px rgba(217, 72, 15, 0.28), inset 0 0 18px rgba(255, 255, 255, 0.55);
       display: none;
       overflow: hidden;
+      background: #fffaf2;
+    }
+
+    .cursor-lens-content {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      min-height: 100vh;
+      transform-origin: 0 0;
     }
 
     .cursor-lens::before {
@@ -30,6 +38,7 @@
       inset: 0;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.45), transparent 34%);
+      z-index: 2;
     }
 
     .cursor-lens::after {
@@ -43,6 +52,7 @@
       bottom: 4px;
       transform: rotate(45deg);
       transform-origin: left center;
+      z-index: 3;
     }
 
     @media (hover: hover) and (pointer: fine) {
@@ -867,11 +877,23 @@
       <p>© 2026 Warung Nusa Rasa. Landing page untuk tugas WebQual 4.0.</p>
     </div>
   </footer>
-  <div class="cursor-lens" id="cursorLens"></div>
+  <div class="cursor-lens" id="cursorLens">
+    <div class="cursor-lens-content" id="cursorLensContent"></div>
+  </div>
 
   <script>
     const cursorLens = document.getElementById("cursorLens");
-    const zoom = 2;
+    const cursorLensContent = document.getElementById("cursorLensContent");
+    const zoom = 1.8;
+
+    function buildMagnifier() {
+      const clone = document.body.cloneNode(true);
+      clone.querySelector("#cursorLens")?.remove();
+      clone.style.pointerEvents = "none";
+      clone.style.margin = "0";
+      cursorLensContent.innerHTML = "";
+      cursorLensContent.appendChild(clone);
+    }
 
     function updateLens(event) {
       const x = event.clientX;
@@ -882,15 +904,12 @@
 
       cursorLens.style.left = `${x}px`;
       cursorLens.style.top = `${y}px`;
-      cursorLens.style.backgroundImage = `linear-gradient(rgba(255, 250, 242, 0.08), rgba(255, 250, 242, 0.08)), url("${location.href}")`;
-      cursorLens.style.backgroundSize = `${document.documentElement.scrollWidth * zoom}px ${document.documentElement.scrollHeight * zoom}px`;
-      cursorLens.style.backgroundPosition = `-${pageX * zoom - lensSize / 2}px -${pageY * zoom - lensSize / 2}px`;
+      cursorLensContent.style.transform = `translate(${lensSize / 2 - pageX * zoom}px, ${lensSize / 2 - pageY * zoom}px) scale(${zoom})`;
     }
 
+    window.addEventListener("load", buildMagnifier);
+    window.addEventListener("resize", buildMagnifier);
     window.addEventListener("mousemove", updateLens);
-    window.addEventListener("scroll", () => {
-      cursorLens.style.backgroundImage = `linear-gradient(rgba(255, 250, 242, 0.08), rgba(255, 250, 242, 0.08)), url("${location.href}")`;
-    });
   </script>
 </body>
 </html>
