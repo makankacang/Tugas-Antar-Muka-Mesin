@@ -76,6 +76,16 @@
       border-bottom: 1px solid rgba(139, 45, 16, 0.12);
     }
 
+    .logo-img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: white;
+      padding: 4px;
+      box-shadow: 0 10px 24px rgba(217, 72, 15, 0.18);
+    }
+
     .navbar {
       height: 76px;
       display: flex;
@@ -232,8 +242,8 @@
       min-height: 380px;
       border-radius: 26px;
       background:
-        linear-gradient(rgba(36, 20, 15, 0.12), rgba(36, 20, 15, 0.4)),
-        url("https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80");
+      linear-gradient(rgba(36, 20, 15, 0.04), rgba(36, 20, 15, 0.18)),
+      url("https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80");
       background-size: cover;
       background-position: center;
       display: flex;
@@ -243,14 +253,26 @@
     }
 
     .food-label {
-      background: rgba(36, 20, 15, 0.72);
+      background: rgba(36, 20, 15, 0.88);
       backdrop-filter: blur(8px);
-      padding: 16px 18px;
+      padding: 18px 20px;
       border-radius: 20px;
       width: 100%;
     }
 
-    .food-label h3 { font-size: 1.1rem; margin-bottom: 4px; }
+    .food-label h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .food-label p {
+      color: #fff3e0;
+      font-size: 0.98rem;
+      font-weight: 500;
+      line-height: 1.6;
+    }
 
     .floating-note {
       position: absolute;
@@ -495,7 +517,7 @@
   <header>
     <div class="container navbar">
       <a href="#home" class="logo">
-        <div class="logo-icon">🍗</div>
+        <img src="chicken.png" alt="Logo Warung Nusa Rasa" class="logo-img">
         <span>Warung Nusa Rasa</span>
       </a>
       <nav>
@@ -535,7 +557,7 @@
           </div>
         </div>
         <div class="hero-visual">
-          <div class="floating-note">Mulai 5 ribuan</div>
+          <div class="floating-note">Mulai 10 ribuan</div>
           <div class="food-card">
             <div class="food-image">
               <div class="food-label">
@@ -591,7 +613,7 @@
         </div>
         <div class="menu-grid">
           <div class="menu-card">
-            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=900&q=80');"></div>
             <div class="menu-content">
               <h3>Ayam Taliwang</h3>
               <p>Ayam berbumbu pedas gurih khas taliwang, bisa dipilih bakar atau goreng sesuai selera.</p>
@@ -601,8 +623,9 @@
               </div>
             </div>
           </div>
+
           <div class="menu-card">
-            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=900&q=80');"></div>
             <div class="menu-content">
               <h3>Ayam Bakar Madu</h3>
               <p>Ayam bakar dengan rasa manis gurih dari madu dan bumbu rempah, cocok untuk yang tidak terlalu pedas.</p>
@@ -612,8 +635,9 @@
               </div>
             </div>
           </div>
+
           <div class="menu-card">
-            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=900&q=80');"></div>
             <div class="menu-content">
               <h3>Ayam Kremes</h3>
               <p>Ayam goreng gurih dengan taburan kremes renyah, disajikan dengan sambal dan lalapan.</p>
@@ -623,8 +647,9 @@
               </div>
             </div>
           </div>
+
           <div class="menu-card">
-            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=80');"></div>
             <div class="menu-content">
               <h3>Kangkung Belacan</h3>
               <p>Kangkung segar dengan bumbu belacan yang gurih dan sedikit pedas sebagai pelengkap makan.</p>
@@ -634,8 +659,9 @@
               </div>
             </div>
           </div>
+
           <div class="menu-card">
-            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80');"></div>
             <div class="menu-content">
               <h3>Telur Barendo</h3>
               <p>Telur dadar khas Minang dengan pinggiran renyah, cocok untuk tambahan lauk hemat.</p>
@@ -645,8 +671,9 @@
               </div>
             </div>
           </div>
+
           <div class="menu-card">
-            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=900&q=80');"></div>
             <div class="menu-content">
               <h3>Aneka Minuman</h3>
               <p>Es teh, jeruk, kopi, dan minuman segar lainnya untuk menemani menu ayam dan sambal.</p>
@@ -724,7 +751,7 @@
   <footer>
     <div class="container footer-content">
       <div class="logo">
-        <div class="logo-icon">🍗</div>
+        <img src="chicken.png" alt="Logo Warung Nusa Rasa" class="logo-img">
         <span>Warung Nusa Rasa</span>
       </div>
       <p>© 2026 Warung Nusa Rasa. Landing page untuk tugas WebQual 4.0.</p>
